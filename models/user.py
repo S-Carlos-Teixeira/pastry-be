@@ -26,6 +26,7 @@ class UserModel(db.Model, BaseModel):
     product = db.relationship("ProductModel", back_populates="user")
     adresses = db.relationship("AddressModel", back_populates="user")
     carts = db.relationship("CartModel", back_populates = "user")
+    order = db.relationship("OrderModel", back_populates = "user")
 
     #methods
     @hybrid_property

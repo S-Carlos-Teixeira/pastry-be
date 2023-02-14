@@ -1,5 +1,6 @@
 from app import db
 from models.base import BaseModel
+from models.order import OrderModel
 
 
 class CartModel (db.Model, BaseModel):
@@ -10,3 +11,4 @@ class CartModel (db.Model, BaseModel):
     products = db.relationship("ProductCartModel", back_populates="cart")
 
     user = db.relationship("UserModel", back_populates = "carts")
+    order = db.relationship("OrderModel", back_populates="cart")

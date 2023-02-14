@@ -5,6 +5,7 @@ from models.product import ProductModel
 from models.image import ImageModel
 from models.address import AddressModel
 from models.cart import CartModel
+from models.cart_item import ProductCartModel
 
 
 roles = ["Admin", "Owner", "Employee", "Customer"]
@@ -81,9 +82,15 @@ with app.app_context():
         image_2 = ImageModel( image_URL = "http://placeimg.com/640/480", product_id=product_2.id)
         image_2.save()
 
-        cart = CartModel()
+        cart = CartModel(user_id = user.id)
         cart.save()
-        
+
+        cart_item = ProductCartModel(product_id= product.id, cart_id = cart.id)
+        cart_item.save()
+
+        cart_item_2 = ProductCartModel(product_id= product_2.id, cart_id = cart.id, quantity = 3)
+        cart_item_2.save()
+                
         print("Database seeded!")
     except Exception as e:
         print("exception", e)

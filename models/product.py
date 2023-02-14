@@ -1,7 +1,7 @@
 from app import db
 from models.base import BaseModel
 from models.image import ImageModel
-from models.protucts_to_cart import ProductCartModel
+from models.cart_item import ProductCartModel
 
 
 class ProductModel(db.Model, BaseModel):

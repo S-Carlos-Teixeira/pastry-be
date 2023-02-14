@@ -4,6 +4,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from app import db, bcrypt
 from models.base import BaseModel
 from models.product import ProductModel
+from models.address import AddressModel
 from config.environment import SECRET
 
 
@@ -23,6 +24,7 @@ class UserModel(db.Model, BaseModel):
     #relationships
     role = db.relationship("RoleModel", back_populates="user")
     product = db.relationship("ProductModel", back_populates="user")
+    adresses = db.relationship("AddressModel", back_populates="user")
 
     #methods
     @hybrid_property

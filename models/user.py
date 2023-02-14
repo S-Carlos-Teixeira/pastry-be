@@ -43,7 +43,7 @@ class UserModel(db.Model, BaseModel):
     def generate_token(self):
 
         payload = {
-            "exp": datetime.utcnow() + timedelta(days=7),
+            "exp": datetime.utcnow() + timedelta(days=1),
             "iat": datetime.utcnow(),
             "sub": self.id,
         }

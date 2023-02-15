@@ -13,8 +13,8 @@ def validate_password(password):
 
 class UserSchema(ma.SQLAlchemyAutoSchema):
 
-    password = fields.String(required=True, validate=validate_password)
-    email = fields.Str(required=True, validate=validate.)
+    password = fields.Str(required=True, validate=validate_password)
+
 
     class Meta:
         model = UserModel

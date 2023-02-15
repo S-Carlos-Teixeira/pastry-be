@@ -1,5 +1,6 @@
 from app import db
 from models.base import BaseModel
+from models.user import UserModel
 
 class OrderModel (db.Model, BaseModel):
     __tablename__ = "orders"

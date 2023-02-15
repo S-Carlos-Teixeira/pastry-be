@@ -20,3 +20,6 @@ bcrypt = Bcrypt(app)
 @app.route("/hello")
 def home():
     return { "hello": "world" }
+
+from controllers import products
+app.register_blueprint(products.router, url_prefix="/api")

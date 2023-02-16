@@ -63,7 +63,7 @@ with app.app_context():
             description="Cake made of banana.",
             price=15.5,
             in_stock=True,
-            user_id=user.id,
+            created_by=user.id,
         )
         product.save()
 
@@ -75,7 +75,7 @@ with app.app_context():
             description= "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
             price = 366.00,
             in_stock = True,
-            user_id = user.id,
+            created_by = user.id,
         )
         product_2.save()
 

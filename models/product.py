@@ -14,7 +14,7 @@ class ProductModel(db.Model, BaseModel):
     description = db.Column(db.Text, nullable=True, unique=False)
     price = db.Column(db.Float, nullable=False, unique=False)
     in_stock = db.Column(db.Boolean, nullable=False, default=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"),nullable=False)
+    created_by = db.Column(db.Integer, db.ForeignKey("users.id"),nullable=False)
 
     #relationships
 

@@ -2,6 +2,7 @@ import re
 from marshmallow import fields, ValidationError
 from app import ma
 from models.user import UserModel
+from serializers.address import AddressSchema
 
 
 def validate_password(password):
@@ -19,6 +20,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = UserModel
         load_instance = True
-        exclude = ("password_hash",)
+        exclude = ("password_hash", "name", "surname", "phone", "email")
         load_only = ("email", "password")
         include_fk = True
+    address = fields.Nested("AddressSchema")

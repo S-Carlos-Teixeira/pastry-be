@@ -21,4 +21,4 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
         exclude = ("password_hash",)
         load_only = ("email", "password")
-    include_fk = True
+        include_fk = True

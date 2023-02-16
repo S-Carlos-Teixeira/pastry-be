@@ -1,16 +1,16 @@
 from http import HTTPStatus
 from marshmallow.exceptions import ValidationError, RegistryError
 from flask import Blueprint, request
+from models.user import UserModel
+from models.image import ImageModel
 from models.product import ProductModel
-# from models.image import ImageModel
-# from models.user import UserModel
 from serializers.product import ProductSchema
 from serializers.image import ImageSchema
 from serializers.user import UserSchema
 
-product_schema = ProductSchema()
-image_schema = ImageSchema()
 user_schema = UserSchema()
+image_schema = ImageSchema()
+product_schema = ProductSchema()
 
 
 router = Blueprint("products", __name__)

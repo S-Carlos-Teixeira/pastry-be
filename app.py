@@ -21,7 +21,7 @@ bcrypt = Bcrypt(app)
 def home():
     return { "hello": "world" }
 
-from controllers import products, carts, orders
+from controllers import products, carts, orders, users
 app.register_blueprint(products.router, url_prefix="/api")
 app.register_blueprint(carts.router, url_prefix="/api")
 app.register_blueprint(orders.router, url_prefix="/api")

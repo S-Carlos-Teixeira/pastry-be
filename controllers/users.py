@@ -76,6 +76,8 @@ def delete_user():
     try:
         user_pass = request.json
         user = UserModel.query.get(g.current_user.id)
+        if not user_pass:
+            return {"message":"Please insert your password."}, HTTPStatus.UNAUTHORIZED
         if not user:
             return {"message":"Unauthorized"}, HTTPStatus.UNAUTHORIZED
         if not user.validate_password(user_pass["password"]):

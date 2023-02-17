@@ -15,4 +15,11 @@ class ProductSchema(ma.SQLAlchemyAutoSchema):
         include_fk=True
     images = fields.Nested("ImageSchema", many=True)
     user = fields.Nested("UserSchema")
-    
+
+class ProductForCartSchema(ma.SQLAlchemyAutoSchema):
+
+    class Meta:
+        model = ProductModel
+        load_instance = True
+        include_fk=True
+    images = fields.Nested("ImageSchema", many=True)        

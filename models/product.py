@@ -1,7 +1,7 @@
 from app import db
 from models.base import BaseModel
 from models.image import ImageModel
-from models.cart_item import ProductCartModel
+from models.cart_item import CartItemModel
 from models.user import UserModel
 
 
@@ -20,4 +20,4 @@ class ProductModel(db.Model, BaseModel):
 
     images = db.relationship("ImageModel", back_populates="product")
     user = db.relationship("UserModel", back_populates="product")
-    carts = db.relationship("ProductCartModel", back_populates="product")
+    carts = db.relationship("CartItemModel", back_populates="product")

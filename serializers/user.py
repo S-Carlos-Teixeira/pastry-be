@@ -23,4 +23,4 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         exclude = ("password_hash", "name", "surname", "phone", "email")
         load_only = ("email", "password")
         include_fk = True
-    address = fields.Nested("AddressSchema")
+    # adresses = fields.Nested("AddressSchema", many=True)

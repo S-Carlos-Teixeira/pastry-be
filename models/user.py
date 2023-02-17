@@ -3,7 +3,6 @@ import jwt
 from sqlalchemy.ext.hybrid import hybrid_property
 from app import db, bcrypt
 from models.base import BaseModel
-# from models.product import ProductModel
 from models.address import AddressModel
 from models.role import RoleModel
 from config.environment import SECRET

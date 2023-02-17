@@ -5,7 +5,8 @@ from models.product import ProductModel
 from models.image import ImageModel
 from models.address import AddressModel
 from models.cart import CartModel
-from models.cart_item import ProductCartModel
+from models.cart_item import CartItemModel
+from models.order import OrderModel
 
 
 roles = ["Admin", "Owner", "Employee", "Customer"]
@@ -85,12 +86,14 @@ with app.app_context():
         cart = CartModel(user_id = user.id)
         cart.save()
 
-        cart_item = ProductCartModel(product_id= product.id, cart_id = cart.id)
+        cart_item = CartItemModel(product_id= product.id, cart_id = cart.id)
         cart_item.save()
 
-        cart_item_2 = ProductCartModel(product_id= product_2.id, cart_id = cart.id, quantity = 3)
+        cart_item_2 = CartItemModel(product_id= product_2.id, cart_id = cart.id, quantity = 3)
         cart_item_2.save()
-                
+
+        order = OrderModel(cart_id=cart.id, user_id= user.id, total = (cart_item.quantity*product.price)+(cart_item_2.quantity*product_2.price) )
+        order.save()
         print("Database seeded!")
     except Exception as e:
         print("exception", e)

@@ -25,3 +25,4 @@ from controllers import products, carts, orders, users
 app.register_blueprint(products.router, url_prefix="/api")
 app.register_blueprint(carts.router, url_prefix="/api")
 app.register_blueprint(orders.router, url_prefix="/api")
+app.register_blueprint(users.router, url_prefix="/api")

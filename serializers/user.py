@@ -24,3 +24,16 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         load_only = ("email", "password")
         include_fk = True
     # adresses = fields.Nested("AddressSchema", many=True)
+
+class UserSignupSchema(ma.SQLAlchemyAutoSchema):
+
+    password = fields.Str(required=True, validate=validate_password)
+
+
+    class Meta:
+        model = UserModel
+        load_instance = True
+        exclude = ("password_hash",)
+        load_only = ("email", "password")
+        include_fk = True
+    # adresses = fields.Nested("AddressSchema", many=True)

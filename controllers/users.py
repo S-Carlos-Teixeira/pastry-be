@@ -18,11 +18,9 @@ def signup():
         user = user_signup_schema.load(user_dictionary)
         user.save()
         return user_schema.jsonify(user), HTTPStatus.CREATED
-    
+
     except ValidationError as e:
         return {"errors": e.messages, "messsages": "Something went wrong"}
-
-
 
 
 @router.route('/login', methods=["POST"])
@@ -36,10 +34,11 @@ def login():
         if not user.validate_password(user_dictionary["password"]):
             return { "message": "Your email or password was incorrect." }, HTTPStatus.UNAUTHORIZED
         token = user.generate_token()
-        return { "token": token, "message": "Welcome back!" }
-    
+        return { "token": token, "message": "Welcome back!" }, HTTPStatus.OK
+
     except ValidationError as e:
         return {"errors": e.messages, "messsages": "Something went wrong"}
+
 
 @router.route("/user", methods=["GET"])
 @secure_route
@@ -50,7 +49,39 @@ def get_user():
     except ValidationError as e:
         return {"errors": e.messages, "messsages": "Something went wrong"}
 
-# @router.route("/user", methods=["PUT"])
-# @secure_route
-# def update_user():
+
+@router.route("/user", methods=["PUT", "PATCH"])
+@secure_route
+def update_user():
+    user_dictionary = request.json
+    user = UserModel.query.get(g.current_user.id)
+
+    if not user:
+        return {"message":"Unauthorized"}, HTTPStatus.UNAUTHORIZED
+
+    try:
+        updated_user = user_signup_schema.load( user_dictionary, instance= user, partial= True)
+        updated_user.save()
+        return user_signup_schema.jsonify(updated_user), HTTPStatus.ACCEPTED
+
+    except ValidationError as e:
+        return {"errors": e.messages, "messsages": "Something went wrong"}
+
+
+@router.route("/user", methods= ["DELETE"])
+@secure_route
+def delete_user():
+
+
+    try:
+        user_pass = request.json
+        user = UserModel.query.get(g.current_user.id)
+        if not user:
+            return {"message":"Unauthorized"}, HTTPStatus.UNAUTHORIZED
+        if not user.validate_password(user_pass["password"]):
+            return { "message": "Your email or password was incorrect." }, HTTPStatus.UNAUTHORIZED
+        user.remove()
+        return "", HTTPStatus.NO_CONTENT
+    except ValidationError as e:
+        return {"errors": e.messages, "messsages": "Something went wrong"}
     

@@ -1,5 +1,5 @@
 import re
-from marshmallow import fields, ValidationError
+from marshmallow import fields, ValidationError, EXCLUDE
 from app import ma
 from models.user import UserModel
 from serializers.address import AddressSchema
@@ -21,9 +21,9 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         model = UserModel
         load_instance = True
         exclude = ("password_hash", "name", "surname", "phone", "email")
-        load_only = ("email", "password")
+        load_only = ("email", "password", "created_at", "updated_at")
         include_fk = True
-    # adresses = fields.Nested("AddressSchema", many=True)
+
 
 class UserSignupSchema(ma.SQLAlchemyAutoSchema):
 
@@ -33,7 +33,19 @@ class UserSignupSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = UserModel
         load_instance = True
-        exclude = ("password_hash",)
-        load_only = ("email", "password")
+        exclude = ("password_hash","role_id")
+        unknown = EXCLUDE
+        load_only = ("email", "password", "created_at", "updated_at")
         include_fk = True
-    # adresses = fields.Nested("AddressSchema", many=True)
+
+
+class FullUserSchema(ma.SQLAlchemyAutoSchema):
+
+    class Meta:
+        model = UserModel
+        load_instance = True
+        exclude = ("password_hash",)
+        unknown = EXCLUDE
+        load_only = ("password", "created_at", "updated_at")
+        include_fk = True
+    adresses = fields.Nested("AddressSchema", many=True)

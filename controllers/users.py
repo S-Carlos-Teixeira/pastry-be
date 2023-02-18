@@ -4,11 +4,12 @@ from flask import Blueprint, request, g
 from marshmallow.exceptions import ValidationError
 from models.user import UserModel
 from models.cart import CartModel
-from serializers.user import UserSchema, UserSignupSchema
+from serializers.user import UserSchema, UserSignupSchema, FullUserSchema
 from middleware.secure_route import secure_route
 
 user_schema = UserSchema()
 user_signup_schema = UserSignupSchema()
+full_user_schema = FullUserSchema()
 
 router = Blueprint("users", __name__)
 
@@ -21,7 +22,7 @@ def signup():
         # check if the user already exists
         user = user_signup_schema.load(user_dictionary)
         user.save()
-        return user_schema.jsonify(user), HTTPStatus.CREATED
+        return user_signup_schema.jsonify(user), HTTPStatus.CREATED
 
     except ValidationError as e:
         return {"errors": e.messages, "messsages": "Something went wrong"}
@@ -66,8 +67,10 @@ def get_user():
     try:
         # get the current user
         user = UserModel.query.get(g.current_user.id)
+        if not user:
+            return {"message": "Unauthorized"}, HTTPStatus.UNAUTHORIZED
         # return the user
-        return user_signup_schema.jsonify(user), HTTPStatus.OK
+        return full_user_schema.jsonify(user), HTTPStatus.OK
     except ValidationError as e:
         return {"errors": e.messages, "messsages": "Something went wrong"}
 

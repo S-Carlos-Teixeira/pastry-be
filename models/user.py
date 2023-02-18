@@ -24,8 +24,8 @@ class UserModel(db.Model, BaseModel):
     #relationships
     role = db.relationship("RoleModel", back_populates="user")
     product = db.relationship("ProductModel", back_populates="user")
-    adresses = db.relationship("AddressModel", back_populates="user")
-    carts = db.relationship("CartModel", back_populates = "user")
+    adresses = db.relationship("AddressModel", back_populates="user", cascade="all, delete-orphan")
+    carts = db.relationship("CartModel", back_populates = "user", cascade="all, delete-orphan")
     order = db.relationship("OrderModel", back_populates = "user")
 
     #methods

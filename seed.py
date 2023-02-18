@@ -10,6 +10,7 @@ from models.order import OrderModel
 
 
 roles = ["Admin", "Owner", "Employee", "Customer"]
+
 with app.app_context():
 
     try:
@@ -23,9 +24,10 @@ with app.app_context():
         for role in roles:
             rolename = RoleModel(role_name=role)
             rolename.save()
+            
         user = UserModel(
-            email="carlos@carlos.com",
-            username="carlos",
+            email="admin@pastry.com",
+            username="admin",
             password="1q2w3e4r5t6Y.",
             name="Carlos",
             surname="Teixeira",
@@ -33,8 +35,31 @@ with app.app_context():
             role_id=1,
         )
         user.save()
+        
+        user_owner = UserModel(
+            email="owner@pastry.com",
+            username="owner",
+            password="1q2w3e4r5t6Y.",
+            name="Carlos",
+            surname="Teixeira",
+            phone="07767668992",
+            role_id=2,
+        )
+        user_owner.save()
+
+        user_employee = UserModel(
+            email="employee@pastry.com",
+            username="employee",
+            password="1q2w3e4r5t6Y.",
+            name="Carlos",
+            surname="Teixeira",
+            phone="07767668993",
+            role_id=3,
+        )
+        user_employee.save()
+        
         user_customer = UserModel(
-            email="customer@customer.com",
+            email="customer@pastry.com",
             username="customer",
             password="1q2w3e4r5t6Y.",
             name="Carlos",
@@ -47,11 +72,11 @@ with app.app_context():
             country = "Monaco",
             fullname = user_customer.name + " " +user_customer.surname,
             phone = user_customer.phone,
-            postcode = "79332",
-            address_line_1 = "38465 Kerluke Tunnel",
+            postcode = "DT7 6LJ",
+            address_line_1 = "88745 Evangeline Falls",
             address_line_2 = "Suite 496",
-            town_city = "Ocala",
-            county = "Cambridgeshire",
+            town_city = "Irvingville",
+            county = "West Sussex",
             delivery_instr = "Leave at door.",
             is_default = True,
             is_billing_address = True,
@@ -68,7 +93,7 @@ with app.app_context():
         )
         product.save()
 
-        image = ImageModel(image_URL="./assets/images/products/banana_cake.jpg", product_id=product.id)
+        image = ImageModel(image_url="./assets/images/products/banana_cake.jpg", product_id=product.id)
         image.save()
 
         product_2 = ProductModel(
@@ -80,7 +105,7 @@ with app.app_context():
         )
         product_2.save()
 
-        image_2 = ImageModel( image_URL = "http://placeimg.com/640/480", product_id=product_2.id)
+        image_2 = ImageModel( image_url = "http://placeimg.com/640/480", product_id=product_2.id)
         image_2.save()
 
         cart = CartModel(user_id = user.id)

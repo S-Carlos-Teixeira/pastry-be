@@ -7,3 +7,15 @@
     "surname":"Shanahan",
     "phone":"(984) 445-1120"
     }
+
+    {
+    "name":"Handmade Granite Table",
+    "description":"Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+    "price": 10.99,
+    "in_stock":True,
+    "image_URL":"https://source.unsplash.com/500x500/?food-drink,Cake",
+    }
+
+    {
+        "image_url":"https://source.unsplash.com/500x500/?food-drink,Cake"
+    }

@@ -108,17 +108,17 @@ with app.app_context():
         image_2 = ImageModel( image_url = "http://placeimg.com/640/480", product_id=product_2.id)
         image_2.save()
 
-        cart = CartModel(user_id = user_customer.id)
-        cart.save()
+        # cart = CartModel(user_id = user_customer.id)
+        # cart.save()
 
-        cart_item = CartItemModel(product_id= product.id, cart_id = cart.id)
-        cart_item.save()
+        # cart_item = CartItemModel(product_id= product.id, cart_id = cart.id)
+        # cart_item.save()
 
-        cart_item_2 = CartItemModel(product_id= product_2.id, cart_id = cart.id, quantity = 3)
-        cart_item_2.save()
+        # cart_item_2 = CartItemModel(product_id= product_2.id, cart_id = cart.id, quantity = 3)
+        # cart_item_2.save()
 
-        order = OrderModel(cart_id=cart.id, user_id= user_customer.id, total = (cart_item.quantity*product.price)+(cart_item_2.quantity*product_2.price) )
-        order.save()
+        # order = OrderModel(cart_id=cart.id, user_id= user_customer.id, total = (cart_item.quantity*product.price)+(cart_item_2.quantity*product_2.price) )
+        # order.save()
         print("Database seeded!")
     except Exception as e:
         print("exception", e)

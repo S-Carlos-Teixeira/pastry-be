@@ -19,9 +19,14 @@ router = Blueprint("carts", __name__)
 @secure_route
 def get_cart():
     try:
+        # get current user
         current_user = g.current_user
+        # if no current user return error
+        if not current_user:
+            return {"message": "Unauthorized"}, HTTPStatus.UNAUTHORIZED
+        # get cart by user id and if it is active
         cart = CartModel.query.filter_by(user_id=current_user.id, is_active= True).first()
-
+        # return cart
         return cart_schema.jsonify(cart)
     except ValidationError as e:
         return {"errors": e.messages, "message": "Something went wrong"}
@@ -29,6 +34,7 @@ def get_cart():
 @router.route("/cart_item/<int:cart_item_id>", methods=["GET"])
 def get_cart_item(cart_item_id):
     try:
+        
         cart = CartItemModel.query.get(cart_item_id)
         return cart_item_schema.jsonify(cart)
     except ValidationError as e:
@@ -42,16 +48,17 @@ def create_cart_item(product_id):
         current_user = g.current_user
         # get cart
         cart = CartModel.query.filter_by(user_id=current_user.id, is_active= True).first()
-        # get product
-        product = ProductModel.query.get(product_id)
-        # get cart item
-        cart_item = CartItemModel.query.filter_by(cart_id=cart.id, product_id=product.id).first()
-        # if no cart, create one
+        # if no cart, return error
         if not cart:
             return {"errors": "Cart not found"}, HTTPStatus.NOT_FOUND
+        # get product
+        product = ProductModel.query.get(product_id)
         # if no product or product not avaliable return error
         if not product or not product.in_stock :
             return {"errors": "Product not found"}, HTTPStatus.NOT_FOUND
+        # get cart item
+        cart_item = CartItemModel.query.filter_by(cart_id=cart.id, product_id=product.id).first()
+        # if cart_item exists, update quantity
         if cart_item:
             cart_item.quantity += 1
             cart_item.save()
@@ -77,11 +84,11 @@ def update_cart_item(cart_item_id):
         current_user = g.current_user
         # get cart
         cart = CartModel.query.filter_by(user_id=current_user.id, is_active= True).first()
-        # get cart item
-        cart_item = CartItemModel.query.filter_by(id=cart_item_id, cart_id=cart.id).first()
-        # if no cart, create one
+        # if no cart, return error
         if not cart:
             return {"errors": "Cart not found"}, HTTPStatus.NOT_FOUND
+        # get cart item
+        cart_item = CartItemModel.query.filter_by(id=cart_item_id, cart_id=cart.id).first()
         # if no cart_item return error
         if not cart_item:
             return {"errors": "Cart item not found"}, HTTPStatus.NOT_FOUND
@@ -102,11 +109,11 @@ def delete_cart_item(cart_item_id):
         current_user = g.current_user
         # get cart
         cart = CartModel.query.filter_by(user_id=current_user.id, is_active= True).first()
-        # get cart item
-        cart_item = CartItemModel.query.filter_by(id=cart_item_id, cart_id=cart.id).first()
-        # if no cart, create one
+        # if no cart, return error
         if not cart:
             return {"errors": "Cart not found"}, HTTPStatus.NOT_FOUND
+        # get cart item
+        cart_item = CartItemModel.query.filter_by(id=cart_item_id, cart_id=cart.id).first()
         # if no cart_item return error
         if not cart_item:
             return {"errors": "Cart item not found"}, HTTPStatus.NOT_FOUND

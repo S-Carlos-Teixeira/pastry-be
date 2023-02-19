@@ -9,6 +9,6 @@ class CartSchema(ma.SQLAlchemyAutoSchema):
         include_fk = True
         model = CartModel
         load_instance = True
-        load_only = ("created_at", "updated_at")
+        load_only = ("created_at", "updated_at", "id")
     products = fields.Nested("CartItemSchema", many=True)
     # user = fields.Nested("UserSchema")

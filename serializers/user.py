@@ -46,6 +46,6 @@ class FullUserSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
         exclude = ("password_hash",)
         unknown = EXCLUDE
-        load_only = ("password", "created_at", "updated_at")
+        load_only = ("password", "created_at", "updated_at", "id")
         include_fk = True
     adresses = fields.Nested("AddressSchema", many=True)

@@ -7,5 +7,5 @@ class ImageSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = ImageModel
         load_instance = True
-        load_only = ("created_at", "updated_at", "id", "product_id")
+        load_only = ("created_at", "updated_at", "product_id")
         include_fk=True

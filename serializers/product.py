@@ -22,5 +22,5 @@ class ProductForCartSchema(ma.SQLAlchemyAutoSchema):
         model = ProductModel
         load_instance = True
         # include_fk=True
-        load_only = ("created_at", "updated_at", "created_by", "id")
+        load_only = ("created_at", "updated_at", "created_by",)
     images = fields.Nested("ImageSchema", many=True)      

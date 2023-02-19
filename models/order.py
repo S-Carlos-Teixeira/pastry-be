@@ -11,6 +11,7 @@ class OrderModel (db.Model, BaseModel):
     cart_id = db.Column(db.Integer, db.ForeignKey("carts.id"), nullable=True)
     total = db.Column(db.Float, nullable= False)
     status = db.Column(db.Text, default = "pending")
+    is_active = db.Column(db.Boolean, default = True)
 
     #relationships
     cart = db.relationship("CartModel", back_populates = "order")

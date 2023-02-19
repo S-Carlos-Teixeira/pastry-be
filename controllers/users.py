@@ -1,6 +1,7 @@
 from http import HTTPStatus
 from datetime import datetime
 from flask import Blueprint, request, g
+from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from models.user import UserModel
 from models.cart import CartModel
@@ -16,13 +17,16 @@ router = Blueprint("users", __name__)
 
 @router.route("/signup", methods=["POST"])
 def signup():
-    user_dictionary = request.json
+    
 
     try:
-        # check if the user already exists
-        user = user_signup_schema.load(user_dictionary)
+        # get the user from the request
+        user_dictionary = request.json
+        # create the user
+        user = user_signup_schema.load(user_dictionary, unknown=EXCLUDE)
         user.save()
-        return user_signup_schema.jsonify(user), HTTPStatus.CREATED
+        # return the user
+        return user_schema.jsonify(user), HTTPStatus.CREATED
 
     except ValidationError as e:
         return {"errors": e.messages, "messsages": "Something went wrong"}
@@ -34,10 +38,13 @@ def login():
     try:
         # get the user from the request
         user_dictionary = request.json
+        # if user dictionary is empty return error
+        if not user_dictionary:
+            return {
+                "message": "Your email or password was incorrect."
+            }, HTTPStatus.UNAUTHORIZED
         # get the user from the database
         user = UserModel.query.filter_by(email=user_dictionary["email"]).first()
-        # get the user cart
-        cart = CartModel.query.filter_by(user_id=user.id, is_active=True).first()
         # check if the user exists
         if not user:
             return {
@@ -48,8 +55,11 @@ def login():
             return {
                 "message": "Your email or password was incorrect."
             }, HTTPStatus.UNAUTHORIZED
+                    
         # generate a token
         token = user.generate_token()
+        # get the user cart
+        cart = CartModel.query.filter_by(user_id=user.id, is_active=True).first()
         # check if the user has a cart and if it is expired and create one if it is expired or doesn't exist
         if not cart or cart.is_expired(datetime.utcnow()):
             cart = CartModel(user_id=user.id)

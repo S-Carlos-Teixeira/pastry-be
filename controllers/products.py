@@ -22,7 +22,7 @@ router = Blueprint("products", __name__)
 def get_products():
     try:
         # getting products from db
-        products = ProductModel.query.filter(user_id=g.current_user.id).all()
+        products = ProductModel.query.all()
         # returning products
         return product_schema.jsonify(products, many=True), HTTPStatus.OK
 

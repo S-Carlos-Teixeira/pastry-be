@@ -93,7 +93,7 @@ with app.app_context():
         )
         product.save()
 
-        image = ImageModel(image_url="./assets/images/products/banana_cake.jpg", product_id=product.id)
+        image = ImageModel(image_url="https://source.unsplash.com/500x500/?food-drink,Cake", product_id=product.id)
         image.save()
 
         product_2 = ProductModel(
@@ -105,7 +105,7 @@ with app.app_context():
         )
         product_2.save()
 
-        image_2 = ImageModel( image_url = "http://placeimg.com/640/480", product_id=product_2.id)
+        image_2 = ImageModel( image_url = "https://source.unsplash.com/500x500/?food-drink,Cake", product_id=product_2.id)
         image_2.save()
 
         # cart = CartModel(user_id = user_customer.id)

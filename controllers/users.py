@@ -22,6 +22,8 @@ def signup():
     try:
         # get the user from the request
         user_dictionary = request.json
+        if not user_dictionary:
+            return {"message": "Please fill all fields."}, HTTPStatus.FORBIDDEN
         # create the user
         user = user_signup_schema.load(user_dictionary, unknown=EXCLUDE)
         user.save()

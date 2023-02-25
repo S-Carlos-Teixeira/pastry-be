@@ -97,7 +97,7 @@ with app.app_context():
         image.save()
 
         product_2 = ProductModel(
-            name = "Refined Metal Soap",
+            name = "Product 2",
             description= "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
             price = 366.00,
             in_stock = True,

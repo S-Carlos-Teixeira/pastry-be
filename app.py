@@ -1,13 +1,16 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS
 from flask import Flask
-from config.environment import DB_URI
+from config.environment import db_URI
 
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = DB_URI
+CORS(app)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_URI
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

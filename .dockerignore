@@ -1,0 +1,7 @@
+# flyctl launch added from .gitignore
+**\faker.json
+**\seed
+**\.env
+**\assets
+**\.vscode
+fly.toml

@@ -5,7 +5,7 @@ from app import db, bcrypt
 from models.base import BaseModel
 from models.address import AddressModel
 from models.role import RoleModel
-from config.environment import SECRET
+from config.environment import secret
 
 
 class UserModel(db.Model, BaseModel):
@@ -49,6 +49,6 @@ class UserModel(db.Model, BaseModel):
             "sub": self.id,
         }
 
-        token = jwt.encode(payload, SECRET, algorithm="HS256")
+        token = jwt.encode(payload, secret, algorithm="HS256")
 
         return token

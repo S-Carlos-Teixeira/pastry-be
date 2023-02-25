@@ -5,7 +5,6 @@ from flask_cors import CORS
 from flask import Flask
 from config.environment import db_URI
 
-
 app = Flask(__name__)
 
 CORS(app)

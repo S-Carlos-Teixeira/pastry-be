@@ -2,7 +2,7 @@ from http import HTTPStatus
 from functools import wraps
 import jwt
 from flask import request, g
-from config.environment import SECRET
+from config.environment import secret
 from models.user import UserModel
 
 
@@ -23,7 +23,7 @@ def secure_route(func):
 
             payload = jwt.decode(
                 clean_token,
-                SECRET,
+                secret,
                 "HS256"
             )
 

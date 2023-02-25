@@ -3,3 +3,4 @@ seed
 .env
 assets
 .vscode
+.env.production

@@ -6,5 +6,11 @@
         "--disable=C0413,C0114,C0115,C0116,W0104,W0613,W0105,R0903,R0913,C0103,R0914,C0304,F0401,W0402,E1101,W0614,C0111,C0301,W0611,W0718"
     ],
     "python.analysis.typeCheckingMode": "off",
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "workbench.colorCustomizations": {
+      "statusBar.background": "#19A119",
+      "statusBar.debuggingBackground": "#19A119",
+      "statusBar.noFolderBackground": "#19A119",
+      "statussBar.prominentBackground": "#19A119"
+    }
 }

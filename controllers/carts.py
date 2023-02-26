@@ -62,7 +62,7 @@ def create_cart_item(product_id):
         if cart_item:
             cart_item.quantity += 1
             cart_item.save()
-            return cart_schema.jsonify(cart)
+            return cart_item_schema.jsonify(cart_item)
         # create cart item
         cart_item = cart_item_schema.load(request.json)
         # add cart_id and product_id to cart_item
@@ -71,7 +71,7 @@ def create_cart_item(product_id):
         # save cart_item
         cart_item.save()
         # return cart
-        return cart_schema.jsonify(cart)
+        return cart_item_schema.jsonify(cart_item)
     except ValidationError as e:
         return {"errors": e.messages, "message": "Something went wrong"}
 
@@ -97,7 +97,7 @@ def update_cart_item(cart_item_id):
         # save cart_item
         cart_item.save()
         # return cart
-        return cart_schema.jsonify(cart)
+        return cart_item_schema.jsonify(cart_item)
     except ValidationError as e:
         return {"errors": e.messages, "message": "Something went wrong"}
 
@@ -120,6 +120,6 @@ def delete_cart_item(cart_item_id):
         # delete cart_item
         cart_item.remove()
         # return cart
-        return cart_schema.jsonify(cart)
+        return "", HTTPStatus.NO_CONTENT
     except ValidationError as e:
         return {"errors": e.messages, "message": "Something went wrong"}

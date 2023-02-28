@@ -86,6 +86,8 @@ def update_product_image(prod_id):
             return {"message": "Unauthorized."}, HTTPStatus.UNAUTHORIZED
         # getting image data from request
         image_dictionary = {"product_id": product.id, "image_url": request.json["image_url"]}
+        if image_dictionary["image_url"] == "":
+            return product_schema.jsonify(product), HTTPStatus.OK
         # updating image
         image = image_schema.load(image_dictionary)
         # saving image
@@ -114,6 +116,14 @@ def update_product(prod_id):
         product = product_schema.load(product_dictionary, instance=product, partial=True, unknown=EXCLUDE)
         # saving product
         product.save()
+        # getting image data from request
+        image_dictionary = {"product_id": product.id, "image_url": request.json["image_url"]}
+        if image_dictionary["image_url"] == "":
+            return product_schema.jsonify(product), HTTPStatus.OK
+        # updating image
+        image = image_schema.load(image_dictionary)
+        # saving image
+        image.save()
         # returning product
         return product_schema.jsonify(product), HTTPStatus.OK
     except ValidationError as e:
@@ -125,6 +135,7 @@ def delete_product(prod_id):
     try:
         #getting user password from request
         user_pass = request.json["password"]
+        print(request.json)
         #getting product from db
         product = ProductModel.query.get(prod_id)
         #getting user from db

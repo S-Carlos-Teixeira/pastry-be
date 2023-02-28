@@ -27,7 +27,7 @@ def get_cart():
         # get cart by user id and if it is active
         cart = CartModel.query.filter_by(user_id=current_user.id, is_active= True).first()
         # return cart
-        return cart_schema.jsonify(cart)
+        return cart_schema.jsonify(cart), HTTPStatus.OK
     except ValidationError as e:
         return {"errors": e.messages, "message": "Something went wrong"}
 
@@ -36,7 +36,7 @@ def get_cart_item(cart_item_id):
     try:
         
         cart = CartItemModel.query.get(cart_item_id)
-        return cart_item_schema.jsonify(cart)
+        return cart_item_schema.jsonify(cart), HTTPStatus.OK
     except ValidationError as e:
         return {"errors": e.messages, "message": "Something went wrong"}
 
@@ -71,7 +71,7 @@ def create_cart_item(product_id):
         # save cart_item
         cart_item.save()
         # return cart
-        return cart_item_schema.jsonify(cart_item)
+        return cart_item_schema.jsonify(cart_item), HTTPStatus.CREATED
     except ValidationError as e:
         return {"errors": e.messages, "message": "Something went wrong"}
 
@@ -97,7 +97,7 @@ def update_cart_item(cart_item_id):
         # save cart_item
         cart_item.save()
         # return cart
-        return cart_item_schema.jsonify(cart_item)
+        return cart_item_schema.jsonify(cart_item), HTTPStatus.ACCEPTED
     except ValidationError as e:
         return {"errors": e.messages, "message": "Something went wrong"}
 

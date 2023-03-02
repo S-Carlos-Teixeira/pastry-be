@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 # Here we get a filepath from either the ENV_FILE passed through, or .env as a default. 
 ENVIRONMENT_FILE = environ.get('ENV_FILE') or '.env'
-print(ENVIRONMENT_FILE)
+# print(ENVIRONMENT_FILE)
 
 # Here we are passing through the env file to load from. override=True means the env file will override .env, if .env exists. 
 load_dotenv(ENVIRONMENT_FILE, override=True)

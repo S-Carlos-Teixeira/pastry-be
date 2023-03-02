@@ -13,7 +13,7 @@ def secure_route(func):
 
 
         raw_token = request.headers.get('Authorization')
-        print (raw_token)
+        # print (raw_token)
 
         if not raw_token:
             return { "message": "Unauthorized" }, HTTPStatus.UNAUTHORIZED

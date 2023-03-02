@@ -135,7 +135,7 @@ def delete_product(prod_id):
     try:
         #getting user password from request
         user_pass = request.json["password"]
-        print(request.json)
+        # print(request.json)
         #getting product from db
         product = ProductModel.query.get(prod_id)
         #getting user from db

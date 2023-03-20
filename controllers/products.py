@@ -38,7 +38,7 @@ def get_product(prod_id):
         # checking if product exists
         if not product:
             return {"message": "Product not found."}, HTTPStatus.NOT_FOUND
-        #
+        # returning product
         return product_schema.jsonify(product), HTTPStatus.OK
 
     except ValidationError as e:
@@ -60,7 +60,7 @@ def create_product():
         product = product_schema.load(product_dictionary, unknown=EXCLUDE)
         # saving product
         product.save()
-        # getting image data from request
+        # getting image data from request and adding product id to it
         image_dictionary = {"product_id": product.id, "image_url": request.json["image_url"]}
         # creating image
         image = image_schema.load(image_dictionary)
@@ -135,20 +135,18 @@ def delete_product(prod_id):
     try:
         #getting user password from request
         user_pass = request.json["password"]
-        # print(request.json)
-        #getting product from db
-        product = ProductModel.query.get(prod_id)
-        #getting user from db
-        user = UserModel.query.get(g.current_user.id)
-        
         #checking if user insert password
         if not user_pass:
             return {"message":"Please insert your password."}, HTTPStatus.UNAUTHORIZED
+        #getting product from db
+        product = ProductModel.query.get(prod_id)
         #checking if product exists
         if not product:
             return {"message": "Product not found."}, HTTPStatus.NOT_FOUND
+        #getting user from db
+        user = UserModel.query.get(g.current_user.id)
         #checking if user is admin or owner
-        if user.role_id >=3:
+        if user.role_id >=2:
             return {"message": "Unauthorized."}, HTTPStatus.UNAUTHORIZED
         # checking if user password is correct
         if not user.validate_password(user_pass):

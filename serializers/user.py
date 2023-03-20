@@ -26,10 +26,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 
 
 class UserSignupSchema(ma.SQLAlchemyAutoSchema):
-
     password = fields.Str(required=True, validate=validate_password)
-
-
     class Meta:
         model = UserModel
         load_instance = True

@@ -168,7 +168,6 @@ def delete_product_image(prod_id, image_id):
         image = ImageModel.query.get(image_id)
         #getting user from db
         user = UserModel.query.get(g.current_user.id)
-        
         #checking if product exists
         if not product:
             return {"message": "Product not found."}, HTTPStatus.NOT_FOUND

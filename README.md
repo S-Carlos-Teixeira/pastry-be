@@ -1,11 +1,11 @@
 # Tabata`s Confectionery
 
 ## Description
-This is a comprehensive web application designed for a fictitious confectionery business. The application enables users to view the available products, add or remove products to/from their cart, and place an order. Additionally, the application offers the business owner the ability to add, edit, or delete products. It includes different role levels, such as admin, owner, employee, and customer, each with varying degrees of functionality access. The Front-end of the application is built using React and TypeScript, while the Back-end uses Flask and Python and is powered by a PostgreSQL database. The application is hosted on Netlify for the Front-end, Fly.io for the Back-end, and Bit.io for the database.
+This is a comprehensive web application designed for a fictitious confectionery business. The application enables users to view the available products, add or remove products to/from their cart, and place an order. Additionally, the application offers the business owner the ability to add, edit, or delete products. It includes different role levels, such as admin, owner, employee, and customer, each with varying degrees of functionality access. <br>The Front-end of the application is built using React and TypeScript, while the Back-end uses Flask and Python and is powered by a PostgreSQL database. The application is hosted on Netlify for the Front-end, Fly.io for the Back-end, and Bit.io for the database.
  
 
 ## Getting Started
-  The project can be accessed on **[my GitHub profile on pastry-fe repository,](https://github.com/scarlosteixeira/pastry-fe)** **[and the Back-end on the pastry-be repository;](https://github.com/scarlosteixeira/pastry-be)** You also can access the application on **[Netlify](https://tabatas-confectionery.netlify.app/)**
+  The project can be accessed on **[my GitHub profile on pastry-fe repository,](https://github.com/scarlosteixeira/pastry-fe)** **[and the Back-end on the pastry-be repository;](https://github.com/scarlosteixeira/pastry-be)** You also can access the application on **[Netlify](https://tabatasconfectionery.netlify.app/)**
 
   ### Back-end
   1. Clone the repository using `git clone https://github.com/scarlosteixeira/pastry-be.git`
@@ -68,7 +68,7 @@ This project was completed over the course of 2 weeks as a solo project for the 
 ## Side Tools
 * **[Excalidraw](https://github.com/excalidraw/excalidraw#documentation)**
 * **[Cloudinary](https://cloudinary.com/documentation)**
-
+* **[GitHub](https://docs.github.com/en)**
 ## Brief
 
 ### Technical Requirements
@@ -485,7 +485,7 @@ You can see below some snapshots of the app, at different conditions.
 
 ![logged-as-customer](./git-imgs/logged%20as%20customer.png)
 
-* **Home page logged as admin**<br><br>Here you can see that the admin has access to the full list of products, including the ones that are out of stock. The 3rd product is out of stock, no ( +Add To Cart button) . 
+* **Home page logged as admin**<br><br>Here you can see that the admin has access to the full list of products, including the ones that are out of stock. The 3rd product is out of stock, no ( +Add To Cart button). 
 
 ![logged-as-admin](./git-imgs/logged%20as%20admin.png)
 
@@ -601,4 +601,4 @@ I have utilized advanced TypeScript features, such as ```Partial``` type, which 
 * Implementing the order page.
 * Improving the responsiveness of the website.
 * Fixing the buttons on the cart page.
-* Deploy the Back-end with a deployment server such as Gunicorn.
+* Deploying the Back-end with a deployment server such as Gunicorn.

@@ -9,6 +9,10 @@ processes = []
 
 [experimental]
   auto_rollback = true
+    [experimental.edge_handlers]
+    [experimental.edge_handlers.routes]
+      match = "https://tabata-confectionery.fly.dev/api*"
+      headers = { "Access-Control-Allow-Origin" = "*" }
 
 [[services]]
   http_checks = []

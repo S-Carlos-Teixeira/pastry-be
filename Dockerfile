@@ -9,6 +9,8 @@ COPY . .
 RUN pip3 install pipenv
 RUN pipenv install
 
-ENTRYPOINT pipenv run python seed.py && pipenv run flask run --host 0.0.0.0 --port 4000
+ENTRYPOINT  pipenv run flask run --host 0.0.0.0 --port 4000
 
 EXPOSE 4000
+
+# pipenv run python seed.py &&

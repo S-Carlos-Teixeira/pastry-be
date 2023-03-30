@@ -34,7 +34,7 @@ def get_cart():
 @router.route("/cart_item/<int:cart_item_id>", methods=["GET"])
 def get_cart_item(cart_item_id):
     try:
-        
+
         cart = CartItemModel.query.get(cart_item_id)
         return cart_item_schema.jsonify(cart), HTTPStatus.OK
     except ValidationError as e:

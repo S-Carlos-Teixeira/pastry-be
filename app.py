@@ -7,7 +7,7 @@ from config.environment import db_URI
 
 app = Flask(__name__)
 
-CORS(app)
+# CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = db_URI
 

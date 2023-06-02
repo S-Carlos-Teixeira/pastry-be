@@ -1,6 +1,10 @@
-# fly.toml file generated for tabata-confectionery on 2023-02-25T11:35:18Z
+# fly.toml app configuration file generated for tabata-confectionery on 2023-06-01T19:55:21+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
 app = "tabata-confectionery"
+primary_region = "lhr"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
